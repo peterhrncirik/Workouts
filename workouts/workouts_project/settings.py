@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     "crispy_forms",
     "crispy_bootstrap5",
     "debug_toolbar",
+    "django_extensions",
     # Local
     "accounts",
     "pages",
