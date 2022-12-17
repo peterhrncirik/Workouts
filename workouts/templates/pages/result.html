@@ -5,6 +5,14 @@
 {% block content %}
 <h1>Result</h1>
 <hr />
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+<hr />
 <div>
 {{ x }}
 
@@ -12,5 +20,22 @@
 
 {{ z }}
 
+{{ d }}
+
+{% comment %} <hr />
+{% for ex in e %}
+<p>{{ ex.name }}</p>
+{% endfor %} {% endcomment %}
+
+<hr />
+<h3>Your workout:</h3>
+{% for key, value in workout.items %}
+<p>{{ key }}:{{ value }}</p>
+{% if key == 'exercises' %}
+{% for e in value %}
+<p>{{ e }}</p>
+{% endfor %}
+{% endif %}
+{% endfor %}
 </div>
 {% endblock content %}

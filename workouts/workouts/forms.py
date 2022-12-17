@@ -1,5 +1,9 @@
 from django import forms
 from .models import Exercise
+from django.urls import reverse_lazy
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit
+
 
 class WorkoutForm(forms.Form):
     
@@ -19,32 +23,32 @@ class WorkoutForm(forms.Form):
     EQUIPMENT_CHOICES = (
         ('body weight', 'body weight'),
         ('cable', 'cable'),
-        ('leverage machine', 'leverage machine'),
-        ('assisted', 'assisted'),
-        ('medicine ball', 'medicine ball'),
-        ('stability ball', 'stability ball'),
+        # ('leverage machine', 'leverage machine'),
+        # ('assisted', 'assisted'),
+        # ('medicine ball', 'medicine ball'),
+        # ('stability ball', 'stability ball'),
         ('band', 'band'),
         ('barbell', 'barbell'),
-        ('rope', 'rope'),
+        # ('rope', 'rope'),
         ('dumbbell', 'dumbbell'),
-        ('ez barbell', 'ez barbell'),
-        ('sled machine', 'sled machine'),
-        ('upper body ergometer', 'upper body ergometer'),
+        # ('ez barbell', 'ez barbell'),
+        # ('sled machine', 'sled machine'),
+        # ('upper body ergometer', 'upper body ergometer'),
         ('kettlebell', 'kettlebell'),
         ('olympic barbell', 'olympic barbell'),
-        ('weighted', 'weighted'),
-        ('bosu ball', 'bosu ball'),
+        # ('weighted', 'weighted'),
+        # ('bosu ball', 'bosu ball'),
         ('resistance band', 'resistance band'),
-        ('roller', 'roller'),
-        ('skierg machine', 'skierg machine'),
-        ('hammer', 'hammer'),
-        ('smith machine', 'smith machine'),
-        ('wheel roller', 'wheel roller'),
-        ('stationary bike', 'stationary bike'),
-        ('tire', 'tire'),
-        ('trap bar', 'trap bar'),
-        ('elliptical machine', 'elliptical machine'),
-        ('stepmill machine', 'stepmill machine'),
+        # ('roller', 'roller'),
+        # ('skierg machine', 'skierg machine'),
+        # ('hammer', 'hammer'),
+        # ('smith machine', 'smith machine'),
+        # ('wheel roller', 'wheel roller'),
+        # ('stationary bike', 'stationary bike'),
+        # ('tire', 'tire'),
+        # ('trap bar', 'trap bar'),
+        # ('elliptical machine', 'elliptical machine'),
+        # ('stepmill machine', 'stepmill machine'),
     )
     
     TARGET_CHOICES = (
@@ -69,8 +73,40 @@ class WorkoutForm(forms.Form):
         ('levator scapulae', 'levator scapulae'),
     )
     
-    bodyparts = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=BODYPART_CHOICES)
-    equipment = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=EQUIPMENT_CHOICES)
-    target = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=TARGET_CHOICES)
+    DIFFICULTY_CHOICES = (
+        ('beginner', 'Beginner'),
+        ('intermediate', 'Intermediate'),
+        ('advanced', 'Advanced'),
+        ('finisher', 'Finisher'),
+    )
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.form_action = reverse_lazy('home')
+        self.helper.add_input(Submit('submit', 'Submit'))
+    
+    equipment = forms.MultipleChoiceField(
+        widget=forms.CheckboxSelectMultiple, 
+        choices=EQUIPMENT_CHOICES, 
+        required=False
+    )
+    
+    difficulty = forms.MultipleChoiceField(
+        widget=forms.CheckboxSelectMultiple, 
+        choices=DIFFICULTY_CHOICES, 
+        required=False
+    )
+    
+    bodyparts = forms.MultipleChoiceField(
+        widget=forms.CheckboxSelectMultiple, 
+        choices=BODYPART_CHOICES, 
+        required=False
+    )
+
+    # target = forms.MultipleChoiceField(
+    #     widget=forms.CheckboxSelectMultiple, 
+    #     choices=TARGET_CHOICES, 
+    #     required=False
+    # )
 
     
