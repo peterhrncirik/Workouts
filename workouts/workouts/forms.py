@@ -21,24 +21,24 @@ class WorkoutForm(forms.Form):
     )
     
     EQUIPMENT_CHOICES = (
-        ('body weight', 'body weight'),
-        ('cable', 'cable'),
+        # ('body weight', 'body weight'),
+        # ('cable', 'cable'),
         # ('leverage machine', 'leverage machine'),
         # ('assisted', 'assisted'),
         # ('medicine ball', 'medicine ball'),
         # ('stability ball', 'stability ball'),
-        ('band', 'band'),
-        ('barbell', 'barbell'),
+        # ('band', 'band'),
+        # ('barbell', 'barbell'),
         # ('rope', 'rope'),
-        ('dumbbell', 'dumbbell'),
+        # ('dumbbell', 'dumbbell'),
         # ('ez barbell', 'ez barbell'),
         # ('sled machine', 'sled machine'),
         # ('upper body ergometer', 'upper body ergometer'),
         ('kettlebell', 'kettlebell'),
-        ('olympic barbell', 'olympic barbell'),
+        # ('olympic barbell', 'olympic barbell'),
         # ('weighted', 'weighted'),
         # ('bosu ball', 'bosu ball'),
-        ('resistance band', 'resistance band'),
+        # ('resistance band', 'resistance band'),
         # ('roller', 'roller'),
         # ('skierg machine', 'skierg machine'),
         # ('hammer', 'hammer'),
@@ -91,17 +91,19 @@ class WorkoutForm(forms.Form):
         required=False
     )
     
+    # bodyparts = forms.MultipleChoiceField(
+    #     widget=forms.CheckboxSelectMultiple, 
+    #     choices=BODYPART_CHOICES, 
+    #     required=False
+    # )
+    
     difficulty = forms.MultipleChoiceField(
         widget=forms.CheckboxSelectMultiple, 
         choices=DIFFICULTY_CHOICES, 
         required=False
     )
     
-    bodyparts = forms.MultipleChoiceField(
-        widget=forms.CheckboxSelectMultiple, 
-        choices=BODYPART_CHOICES, 
-        required=False
-    )
+
 
     # target = forms.MultipleChoiceField(
     #     widget=forms.CheckboxSelectMultiple, 
