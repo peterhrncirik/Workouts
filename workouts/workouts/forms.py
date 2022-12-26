@@ -34,7 +34,7 @@ class WorkoutForm(forms.Form):
         # ('ez barbell', 'ez barbell'),
         # ('sled machine', 'sled machine'),
         # ('upper body ergometer', 'upper body ergometer'),
-        ('kettlebell', 'kettlebell'),
+        ('kettlebell', 'Kettlebell'),
         # ('olympic barbell', 'olympic barbell'),
         # ('weighted', 'weighted'),
         # ('bosu ball', 'bosu ball'),
@@ -77,38 +77,30 @@ class WorkoutForm(forms.Form):
         ('beginner', 'Beginner'),
         ('intermediate', 'Intermediate'),
         ('advanced', 'Advanced'),
-        ('finisher', 'Finisher'),
     )
+    
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper(self)
         self.helper.form_action = reverse_lazy('home')
-        self.helper.add_input(Submit('submit', 'Submit'))
+        self.helper.add_input(Submit('submit', "I'm ready!", css_class="btn btn-danger"))
+
     
     equipment = forms.MultipleChoiceField(
         widget=forms.CheckboxSelectMultiple, 
         choices=EQUIPMENT_CHOICES, 
+        label='Equipment: ',
         required=False
     )
-    
-    # bodyparts = forms.MultipleChoiceField(
-    #     widget=forms.CheckboxSelectMultiple, 
-    #     choices=BODYPART_CHOICES, 
-    #     required=False
-    # )
     
     difficulty = forms.MultipleChoiceField(
         widget=forms.CheckboxSelectMultiple, 
         choices=DIFFICULTY_CHOICES, 
+        label='Difficulty: ',
         required=False
     )
     
 
 
-    # target = forms.MultipleChoiceField(
-    #     widget=forms.CheckboxSelectMultiple, 
-    #     choices=TARGET_CHOICES, 
-    #     required=False
-    # )
 
     

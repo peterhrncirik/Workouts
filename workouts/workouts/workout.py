@@ -1,7 +1,12 @@
 import random
-        
+
+"""
+Module consisting of functions that build actual workout based on difficulty selected
+
+"""
 
 def generate_workout(difficulty, exercises):
+    
     
     match difficulty:
         case 'beginner':
@@ -10,8 +15,7 @@ def generate_workout(difficulty, exercises):
             return generate_intermediate_workout(exercises)
         case 'advanced':
             return generate_advanced_workout(exercises)
-        case 'finisher':
-            return generate_finisher_workout(exercises)
+
     
                 
 
@@ -19,12 +23,12 @@ def generate_beginner_workout(exercises):
     
     workout = []
     
-    for exercise in random.sample(list(exercises), k=5):
+    for exercise in random.sample(list(exercises), k=random.randint(2, 4)):
         
         workout.append({
             'img': exercise.cover_img,
             'name': exercise.name,
-            'sets': random.randint(2, 4),
+            'sets': random.randint(2, 3),
             'reps': random.randint(8, 12),
         })
     
@@ -36,13 +40,13 @@ def generate_intermediate_workout(exercises):
     
     workout = []
     
-    for exercise in random.sample(list(exercises), k=5):
+    for exercise in random.sample(list(exercises), k=random.randint(3, 6)):
         
         workout.append({
             'img': exercise.cover_img,
             'name': exercise.name,
-            'sets': random.randint(2, 4),
-            'reps': random.randint(8, 12),
+            'sets': random.randint(3, 5),
+            'reps': random.randint(8, 16),
         })
     
 
@@ -52,25 +56,15 @@ def generate_advanced_workout(exercises):
     
     workout = []
     
-    for exercise in random.sample(list(exercises), k=5):
+    for exercise in random.sample(list(exercises), k=random.randint(4, 7)):
         
         workout.append({
             'img': exercise.cover_img,
             'name': exercise.name,
-            'sets': random.randint(2, 4),
-            'reps': random.randint(8, 12),
+            'sets': random.randint(3, 6),
+            'reps': random.randint(8, 20),
         })
     
 
     return workout
 
-def generate_finisher_workout(exercises):
-   
-    workout = []
-    
-    for exercise in exercises[:5]:
-        
-        workout.append(f'{exercise.name} {random.randint(2, 4)}x{random.randint(8, 12)}')
-    
-
-    return workout

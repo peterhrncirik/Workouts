@@ -24,18 +24,19 @@ class HomePageView(View):
             equipments = form.cleaned_data.get('equipment')
             difficulty = form.cleaned_data.get('difficulty')[0]
             
+            # Different query based on difficulty
             match difficulty:
                 case 'beginner':
                     exercises = Exercise.objects.filter(equipment='kettlebell').exclude(difficulty='hard').exclude(difficulty='medium')
                 case 'intermediate':
                     exercises = Exercise.objects.filter(equipment='kettlebell').exclude(difficulty='hard')
-                case _:
+                case 'advanced':
                     exercises = Exercise.objects.filter(equipment='kettlebell')
                      
-            # exercises = Exercise.objects.filter(Q(bodypart__in=bodyparts)&Q(equipment__in=equipments))
-            exercises = Exercise.objects.filter(Q(equipment__in=equipments))
 
             # To si checkni aka je length of returned exercises
+            if not exercises:
+                exercises = Exercise.objects.filter(equipment='kettlebell')
 
             # daj filter ze ak nie je exercise pre dany tool, nebude taka moznost na bodypart
             

@@ -4,23 +4,27 @@
 
 {% block content %}
 <h3>Your workout:</h3>
+<form>
+  <button class="btn btn-danger">Generate new</button>
+  <button class="btn btn-outline-success">Save workout</button>
+</form>
 <hr />
 
-<ul class="list-group">
-    
-
-  {% for exercise in workout %}
-  <div class="row m-1">
-    <div class="col-3">
-        <img src='static/images/exercises/{{exercise.img}}' class='img-thumbnail' style="width: 130px; height: 130px;"/> 
-    </div>
-    <div class="col-9">
-        <span class='h3'>{{ exercise.name|title }}</span>
-        <p class="text-muted">Sets: {{ exercise.sets }}</p>
-    </div>
+<div class="row">
+  <div class="col my-5">
+    <ul class="list-group">
+      {% for exercise in workout %}
+      <div class="row m-1">
+        <div class="col-3">
+            <img src='static/images/exercises/{{exercise.img}}' class='img-thumbnail' style="width: 130px; height: 130px;"/> 
+        </div>
+        <div class="col-9">
+            <span class='h3'>{{ exercise.name|title }}</span>
+            <p class="text-lead">{{ exercise.sets }}x{{ exercise.reps }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </ul>
   </div>
-  {% endfor %}
-
-
 </div>
 {% endblock content %}
